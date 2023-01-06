@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import MainPage from "./components/Pages/MainPage";
+import LoginPage from "./components/credentials/LoginPage";
+import Signup from "./components/credentials/RegisterPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useCookies } from "react-cookie";
+import ErrorPage from "./components/Pages/ErrorPage";
+import ForgotPassword from "./components/credentials/ForgotPassword";
+import ChangePassword from "./components/credentials/ChangePassword";
+import ItemCategory from "./components/Pages/ProductDetails/ItemCategory";
+import UpdateProfile from "./components/credentials/UpdateProfile";
+import UserListPage from "./components/Pages/UserListPage";
+import VendorListPage from "./components/Pages/VendorListPage";
+import AllUserPage from "./components/Pages/AllUserPage";
+import AddProduct from "./components/Pages/ProductDetails/AddProduct";
 function App() {
+  const [cookies, getCookie] = useCookies([]);
+  let checkLogin = cookies.token;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ToastContainer />
+      {!checkLogin || checkLogin === undefined || checkLogin == "undefined" ? (
+        <>
+          <ToastContainer />
+          <Routes>
+            <Route extact path="/" element={<LoginPage />} />
+            <Route extact path="/registation" element={<Signup />} />
+            <Route extact path="/forgotpassword" element={<ForgotPassword />} />
+            <Route extact path="*" element={<ErrorPage />} />
+          </Routes>
+        </>
+      ) : (
+        <>
+          {" "}
+          <ToastContainer />
+          <Routes>
+            <Route extact path="/" element={<MainPage />} />
+            <Route extact path="/changepassword" element={<ChangePassword />} />
+            <Route extact path="/updateprofile" element={<UpdateProfile />} />
+            <Route extact path="/category" element={<ItemCategory />} />
+            <Route extact path="/alluserlist" element={<AllUserPage />} />
+            <Route extact path="/userlist" element={<UserListPage />} />
+            <Route extact path="/vendorlist" element={<VendorListPage />} />
+            <Route extact path="/addproduct" element={<AddProduct />} />
+            <Route extact path="*" element={<ErrorPage />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }

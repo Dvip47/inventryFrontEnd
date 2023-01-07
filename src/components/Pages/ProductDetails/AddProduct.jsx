@@ -8,7 +8,7 @@ function AddProduct() {
     // Do something with the files
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-  console.log(data);
+  //   console.log(data);
   return (
     <center>
       <div class="col-md-6 mt-4">

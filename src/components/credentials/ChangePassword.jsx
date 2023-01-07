@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { constant } from "../../Constant/Constant";
 
 function ChangePassword() {
   const [formData, setFormData] = useState();
@@ -14,7 +15,7 @@ function ChangePassword() {
     event.preventDefault();
     if (formData?.password == formData?.cpassword) {
       try {
-        const res = await fetch("/api/users/changepassword", {
+        const res = await fetch(constant.CHANGE_PASSWORD, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

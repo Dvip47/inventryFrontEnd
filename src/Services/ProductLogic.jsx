@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function ProductLogic() {
   const [post, setPost] = useState();
   const [data, setData] = useState();
@@ -36,6 +37,7 @@ export default function ProductLogic() {
         })
         .then((response) => {
           setPost(response.data);
+          toast.success("Product Added 🔥");
         });
     } catch (error) {
       setPost(error);

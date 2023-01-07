@@ -7,16 +7,21 @@ function VendorListPage() {
   const FilterFunction = () => {
     let result = [];
     let role = "Vendor";
-
     result = allUser.filter((data) => {
       return data?.role == role;
     });
+    console.log(result);
     setVendorList(result);
   };
+  console.log(allUser);
   useEffect(() => {
     AllUserFunction();
-    FilterFunction();
+    // FilterFunction();
   }, []);
+
+  let myTimeOut = setTimeout(FilterFunction, 100);
+  // let clearTimeout1 = clearTimeout(myTimeOut);
+  // setTimeout(clearTimeout1, 200);
   return (
     <div class="container mt-3 mb-4">
       <div class="col-lg-9 mt-4 mt-lg-0">

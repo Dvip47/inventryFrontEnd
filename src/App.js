@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import MainPage from "./components/Pages/MainPage";
 import LoginPage from "./components/credentials/LoginPage";
 import Signup from "./components/credentials/RegisterPage";
@@ -15,13 +15,27 @@ import UserListPage from "./components/Pages/UserListPage";
 import VendorListPage from "./components/Pages/VendorListPage";
 import AllUserPage from "./components/Pages/AllUserPage";
 import AddProduct from "./components/Pages/ProductDetails/AddProduct";
+import { constant } from "./Constant/Constant";
+import { getCookie } from "./Services/CookiesLogic";
 function App() {
-  const [cookies, getCookie] = useCookies([]);
-  let checkLogin = cookies.token;
+  const [pages, setPages] = useState(true);
+  const navigate = useNavigate();
+  const x = getCookie(constant.SETCOOKIE);
+  let _x = JSON.parse(x);
+  useEffect(() => {
+    if (!_x) {
+      setPages(false);
+      return navigate("/");
+    } else {
+      setPages(true);
+      return navigate("/");
+    }
+  }, [pages, x]);
+
   return (
     <div>
       <ToastContainer />
-      {!checkLogin || checkLogin === undefined || checkLogin == "undefined" ? (
+      {!pages ? (
         <>
           <ToastContainer />
           <Routes>

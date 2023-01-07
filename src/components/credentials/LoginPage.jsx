@@ -13,35 +13,13 @@ import {
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function LoginPage() {
-  const [cookies, setCookie] = useCookies([]);
-  const [formData, setFormData] = useState();
+import { useNavigate } from "react-router";
+import { constant } from "../../Constant/Constant";
+import { AuthLogic } from "../../Services/LoginLogic";
 
-  const inputHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const userLogin = async (event) => {
-    event.preventDefault();
-    const res = await fetch("http://localhost:5000/api/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: formData?.email,
-        password: formData?.password,
-      }),
-    });
-    let a = await res.json();
-    if (res.status == 201) {
-      setCookie("token", a.token);
-      toast.success("Login Successful 😎");
-    } else {
-      toast.error(a.message, "😣");
-    }
-    try {
-    } catch (error) {
-      toast.error(error);
-    }
-  };
+function LoginPage() {
+  const { userLogin, inputHandler } = AuthLogic();
+
   return (
     <>
       <MDBContainer fluid className="p-3 my-5">

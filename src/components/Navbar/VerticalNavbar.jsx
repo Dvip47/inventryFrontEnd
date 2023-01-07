@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { LogoutLogic } from "../credentials/LogoutLogic";
+import { AuthLogic } from "../../Services/LoginLogic";
 import UpdateProfile from "../credentials/UpdateProfile";
 
 function VerticalNavbar({ name, role, menu, imgUrl }) {
+  const { logout } = AuthLogic();
   const [updateShow, setUpdateShow] = useState(false);
   const [show, setShow] = useState(false);
   return (
@@ -85,7 +86,7 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                 <NavLink
                   to="#"
                   onClick={() => {
-                    LogoutLogic();
+                    logout();
                   }}
                 >
                   <i className="ion-log-out"></i>

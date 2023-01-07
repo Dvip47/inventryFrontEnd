@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { constant } from "../../Constant/Constant";
+
 function ForgotPassword() {
   const [formData, setFormData] = useState();
   console.log(formData);
@@ -10,7 +12,7 @@ function ForgotPassword() {
   };
   const ForgotEmail = async () => {
     try {
-      const res = await fetch("/api/users/forgotpassword", {
+      const res = await fetch(constant.FORGOT_PASSWORD, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

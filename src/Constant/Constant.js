@@ -18,4 +18,7 @@ export const constant = {
   GET_ALL_USER: "/api/users/alluser",
 
   GET_ALL_CUSTOMER: "/api/users/allCustomer",
+
+  ADD_CATEGORY:"/api/category/addcategory",
+  
 };

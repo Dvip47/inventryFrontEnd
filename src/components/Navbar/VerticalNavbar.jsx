@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthLogic } from "../../Services/LoginLogic";
-import UpdateProfile from "../credentials/UpdateProfile";
 
 function VerticalNavbar({ name, role, menu, imgUrl }) {
   const { logout } = AuthLogic();
-  const [updateShow, setUpdateShow] = useState(false);
   const [show, setShow] = useState(false);
+
   return (
     <div>
       <nav id="navigation" className="navigation-sidebar bg-primary">
@@ -58,22 +57,10 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/updateprofile"
-                  onClick={() => {
-                    setUpdateShow(!updateShow);
-                  }}
-                >
+                <NavLink to="/updateprofile">
                   <i className="ion-ios-person-outline"></i>
                   <span>Update Profile</span>
                 </NavLink>
-                {updateShow ? (
-                  <>
-                    <UpdateProfile name={"vipin"} role={role} />
-                  </>
-                ) : (
-                  <></>
-                )}
               </li>
               <li>
                 <NavLink to="/changepassword">
@@ -101,37 +88,43 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
           <ul className="menu-items custom-scroll">
             {menu.length != 0 ? (
               <>
-                {menu.map((data, id) => {
-                  console.log(data);
-
+                {menu?.map((data, id) => {
                   return (
                     <li key={id}>
-                      {/* <NavLink to="/category" className="have-submenu">
-                        <span className="icon-thumbnail">
-                          <i className="dripicons-article"></i>
-                        </span>
-                        <span className="title">{data}</span>
-                      </NavLink> */}
-
                       {!show ? (
                         <>
-                          <a
-                            href="#"
-                            className="have-submenu "
-                            onClick={() => {
-                              setShow(!show);
-                            }}
-                          >
-                            <span className="icon-thumbnail">
-                              <i className="dripicons-article"></i>
-                            </span>
-                            <span className="title">{data}</span>
-                          </a>
+                          {data?.menu == "User Management" ? (
+                            <>
+                              <NavLink
+                                to={data?.link}
+                                className="have-submenu "
+                                onClick={() => {
+                                  setShow(!show);
+                                }}
+                              >
+                                <span className="icon-thumbnail">
+                                  <i className="dripicons-article"></i>
+                                </span>
+                                <span className="title">{data?.menu}</span>
+                              </NavLink>
+                            </>
+                          ) : (
+                            <>
+                              <NavLink
+                                to={data?.link}
+                              >
+                                <span className="icon-thumbnail">
+                                  <i className="dripicons-article"></i>
+                                </span>
+                                <span className="title">{data?.menu}</span>
+                              </NavLink>
+                            </>
+                          )}
                         </>
                       ) : (
                         <>
-                          <a
-                            href="#"
+                          <NavLink
+                            to="#"
                             className="have-submenu show"
                             onClick={() => {
                               setShow(!show);
@@ -140,12 +133,12 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                             <span className="icon-thumbnail">
                               <i className="dripicons-article"></i>
                             </span>
-                            <span className="title">{data}</span>
-                          </a>
+                            <span className="title">{data?.menu}</span>
+                          </NavLink>
                         </>
                       )}
 
-                      {data == "User Management" ? (
+                      {data?.menu == "User Management" ? (
                         <>
                           {show ? (
                             <>

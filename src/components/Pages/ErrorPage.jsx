@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 
 function ErrorPage() {
   return (
-    <div>
-      <section>
+
+    <section className="page-container">
+    <div className="page-content-wrapper">
+      <div className="content sm-gutter mt-3 mb-4">
         <div class="d-flex justify-content-center m-height full-width align-items-center">
           <div class="error-container text-center my-auto">
             <h1 class="error-number mb-2">404</h1>
@@ -24,9 +26,9 @@ function ErrorPage() {
               </NavLink>
             </p>
           </div>
-        </div>
+        </div></div></div>
       </section>
-    </div>
+
   );
 }
 

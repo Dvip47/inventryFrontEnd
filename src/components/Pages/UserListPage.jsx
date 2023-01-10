@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import UserDeatails from "../../Services/UserDeatailsLogic";
 
 function UserListPage() {
+  
   const { customerData, AllCustomerFunction } = UserDeatails();
 
   useEffect(() => {
     AllCustomerFunction();
   }, []);
   return (
-    <div class="container mt-3 mb-4">
+    <center>
+
+    <section className="page-container mt-5">
+    <div className="page-content-wrapper mt-5">
+      <div className="content sm-gutter mt-3 mb-4">
       <div class="col-lg-9 mt-4 mt-lg-0">
         <div class="row">
           <div class="col-md-12">
@@ -158,7 +163,8 @@ function UserListPage() {
           </div>
         </div>
       </div>
-    </div>
+    </div></div></section>
+    </center>
   );
 }
 

@@ -18,9 +18,7 @@ function MainPage() {
     UserDetails1();
   }, []);
 
-  const adminMenu = ["User Management", "Add Products", "Add Category"];
-  const vendorMenu = ["Add Products", "Add Category"];
-  const userMenu = ["My Order", "Wish List", "Gift Card", "Notifications"];
+
 
   return (
     <>
@@ -29,15 +27,10 @@ function MainPage() {
         <>
           {" "}
           <div>
-            <VerticalNavbar
-              name={data?.data?.fname}
-              role={data?.data?.role}
-              menu={adminMenu}
-              imgUrl={data?.data?.photo}
-            />
+            
             <section className="page-container">
               <div className="page-content-wrapper">
-                <Topbar />
+               
                 <div className="content sm-gutter">
                   <div className="container-fluid padding-25 sm-padding-10">
                     <div className="row">
@@ -116,15 +109,10 @@ function MainPage() {
         <>
           {" "}
           <div>
-            <VerticalNavbar
-              name={data?.data?.fname}
-              role={data?.data?.role}
-              menu={vendorMenu}
-              imgUrl={data?.data?.photo}
-            />
+            
             <section className="page-container">
               <div className="page-content-wrapper">
-                <Topbar />
+               
                 <div className="content sm-gutter">
                   <div className="container-fluid padding-25 sm-padding-10">
                     <div className="row">
@@ -190,15 +178,9 @@ function MainPage() {
       ) : data?.data?.role == "Customer" ? (
         <>
           <div>
-            <VerticalNavbar
-              name={data?.data?.fname}
-              role={data?.data?.role}
-              menu={userMenu}
-              imgUrl={data?.data?.photo}
-            />
+            
             <section className="page-container">
               <div className="page-content-wrapper">
-                <Topbar />
                 <div className="content sm-gutter">
                   <div className="container-fluid padding-25 sm-padding-10">
                     <div className="row">

@@ -17,6 +17,9 @@ import AllUserPage from "./components/Pages/AllUserPage";
 import AddProduct from "./components/Pages/ProductDetails/AddProduct";
 import { constant } from "./Constant/Constant";
 import { getCookie } from "./Services/CookiesLogic";
+import UserDeatails from "./Services/UserDeatailsLogic";
+import VerticalNavbar from "./components/Navbar/VerticalNavbar";
+import Topbar from "./components/Navbar/Topbar";
 function App() {
   const [pages, setPages] = useState(true);
   const navigate = useNavigate();
@@ -31,7 +34,18 @@ function App() {
       return navigate("/");
     }
   }, [pages, x]);
-
+  const adminMenu = [
+    { menu:"User Management",link:"#"},
+    { menu:"Add Product",link:"/addproduct"},
+    { menu:"Add Category",link:"/category"},
+  ];
+    // console.log(adminMenu)
+  const vendorMenu = ["Add Products", "Add Category"];
+  const customerMenu = ["My Order", "Wish List", "Gift Card", "Notifications"];
+  const { data, UserDetails1 } = UserDeatails();
+  useEffect(() => {
+    UserDetails1();
+  }, []);
   return (
     <div>
       <ToastContainer />
@@ -44,11 +58,34 @@ function App() {
             <Route extact path="/forgotpassword" element={<ForgotPassword />} />
             <Route extact path="*" element={<ErrorPage />} />
           </Routes>
-        </>
+        </> 
       ) : (
         <>
-          {" "}
+
           <ToastContainer />
+          <Topbar/>
+          { 
+             data?.data?.role == "Admin"?
+          (<>
+          <VerticalNavbar
+              name={data?.data?.fname}
+              role={data?.data?.role}
+              menu={adminMenu}
+              imgUrl={data?.data?.photo}
+            />
+            </>): data?.data?.role == "Vendor"?(<> 
+            <VerticalNavbar
+              name={data?.data?.fname}
+              role={data?.data?.role}
+              menu={vendorMenu}
+              imgUrl={data?.data?.photo}
+            /></>):(<> <VerticalNavbar
+              name={data?.data?.fname}
+              role={data?.data?.role}
+              menu={customerMenu}
+              imgUrl={data?.data?.photo}
+            /></>)}
+          
           <Routes>
             <Route extact path="/" element={<MainPage />} />
             <Route extact path="/changepassword" element={<ChangePassword />} />

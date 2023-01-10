@@ -6,8 +6,11 @@ import { constant } from "../Constant/Constant";
 import delete_cookie, { setCookie } from "./CookiesLogic";
 
 export function AuthLogic() {
+
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState();
+
   const logout = async () => {
     try {
       const res = await fetch("/api/users/logout", {
@@ -29,6 +32,7 @@ export function AuthLogic() {
   const inputHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
   const userLogin = async (event) => {
     try {
       event.preventDefault();
@@ -53,6 +57,7 @@ export function AuthLogic() {
       toast.error(error);
     }
   };
+
   return {
     logout,
     inputHandler,

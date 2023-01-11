@@ -7,22 +7,21 @@ import { constant } from "../Constant/Constant";
 export default function CategoryLogic() {
   const [post, setPost] = useState();
   const [data, setData] = useState();
-
+  const [category, setCategory] = useState();
   const inputHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-
   const addCategoryFunction = async (e) => {
     e.preventDefault();
-    if (!data?.category ) {
+    if (!data?.category) {
       console.log("fill New Category data");
     }
     try {
       axios
         .post(constant.ADD_CATEGORY, {
           // .post("/api/category/addcategory", {
-          category: data?.category
+          category: data?.category,
         })
         .then((response) => {
           setPost(response?.data);
@@ -35,11 +34,24 @@ export default function CategoryLogic() {
     }
   };
 
+  const getCategoryFunction = async (e) => {
+    try {
+      axios.get(constant.GET_CATEGORY).then((responce) => {
+        setCategory(responce?.data?.data);
+        // console.log(responce?.data?.data)
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     addCategoryFunction,
     post,
     setPost,
     inputHandler,
     data,
+    getCategoryFunction,
+    category,
   };
 }

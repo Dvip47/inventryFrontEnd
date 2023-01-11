@@ -21,4 +21,5 @@ export const constant = {
 
   ADD_CATEGORY:"/api/category/addcategory",
   
+  GET_CATEGORY:"/api/category/allcategory",
 };

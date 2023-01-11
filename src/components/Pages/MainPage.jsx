@@ -23,7 +23,7 @@ function MainPage() {
   return (
     <>
       {data?.data?.role == "Admin" ? (
-        // {role == "Admin" ? (
+       
         <>
           {" "}
           <div>

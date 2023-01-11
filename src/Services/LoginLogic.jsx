@@ -51,13 +51,19 @@ export function AuthLogic() {
         setCookie(constant.SETCOOKIE, JSON.stringify(a._id), 30);
         return navigate("/");
       } else {
+        toast.error("😣");
         toast.error(a.message, "😣");
       }
     } catch (error) {
+      console.log(error)
       toast.error(error);
     }
   };
-
+//  return [
+//   logout,
+//     inputHandler,
+//     userLogin,
+//  ]
   return {
     logout,
     inputHandler,

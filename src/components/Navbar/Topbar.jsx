@@ -3,23 +3,7 @@ import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function Topbar() {
-  // const [cookies, removeCookie] = useCookies(["token"]);
-  // const LogoutLogic = async () => {
-  //   try {
-  //     const res = await fetch("/api/users/logout", {
-  //       method: "get",
-  //       credentials: "include",
-  //     });
-  //     if (res) {
-  //       removeCookie("token");
-  //       toast.success("Logout Successful 😎");
-  //     } else {
-  //       toast.error("Logout failed 😣");
-  //     }
-  //   } catch (error) {
-  //     toast.error(error);
-  //   }
-  // };
+
   return (
     <>
       <div className="header fixed-header body ">

@@ -20,6 +20,7 @@ import { getCookie } from "./Services/CookiesLogic";
 import UserDeatails from "./Services/UserDeatailsLogic";
 import VerticalNavbar from "./components/Navbar/VerticalNavbar";
 import Topbar from "./components/Navbar/Topbar";
+import CategoryList from "./components/Pages/ProductDetails/CategoryList";
 function App() {
   const [pages, setPages] = useState(true);
   const navigate = useNavigate();
@@ -35,13 +36,21 @@ function App() {
     }
   }, [pages, x]);
   const adminMenu = [
-    { menu:"User Management",link:"#"},
-    { menu:"Add Product",link:"/addproduct"},
-    { menu:"Add Category",link:"/category"},
+    { menu: "User Management", link: "#" },
+    { menu: "Add Product", link: "/addproduct" },
+    { menu: "Category", link: "/category" },
   ];
-    // console.log(adminMenu)
-  const vendorMenu = ["Add Products", "Add Category"];
-  const customerMenu = ["My Order", "Wish List", "Gift Card", "Notifications"];
+  // console.log(adminMenu)
+  const vendorMenu = [
+    { menu: "Add Product", link: "/addproduct" },
+    { menu: "Category", link: "/category" },
+  ];
+  const customerMenu = [
+    { menu:"My Order",link:"#"},
+    { menu:"Wish List",link:"#"},
+    { menu:"Gift Card",link:"#"},
+    { menu: "Notifications",link:"#"},
+   ];
   const { data, UserDetails1 } = UserDeatails();
   useEffect(() => {
     UserDetails1();
@@ -58,42 +67,50 @@ function App() {
             <Route extact path="/forgotpassword" element={<ForgotPassword />} />
             <Route extact path="*" element={<ErrorPage />} />
           </Routes>
-        </> 
+        </>
       ) : (
         <>
-
           <ToastContainer />
-          <Topbar/>
-          { 
-             data?.data?.role == "Admin"?
-          (<>
-          <VerticalNavbar
-              name={data?.data?.fname}
-              role={data?.data?.role}
-              menu={adminMenu}
-              imgUrl={data?.data?.photo}
-            />
-            </>): data?.data?.role == "Vendor"?(<> 
-            <VerticalNavbar
-              name={data?.data?.fname}
-              role={data?.data?.role}
-              menu={vendorMenu}
-              imgUrl={data?.data?.photo}
-            /></>):(<> <VerticalNavbar
-              name={data?.data?.fname}
-              role={data?.data?.role}
-              menu={customerMenu}
-              imgUrl={data?.data?.photo}
-            /></>)}
-          
+          <Topbar />
+          {data?.data?.role == "Admin" ? (
+            <>
+              <VerticalNavbar
+                name={data?.data?.fname}
+                role={data?.data?.role}
+                menu={adminMenu}
+                imgUrl={data?.data?.photo}
+              />
+            </>
+          ) : data?.data?.role == "Vendor" ? (
+            <>
+              <VerticalNavbar
+                name={data?.data?.fname}
+                role={data?.data?.role}
+                menu={vendorMenu}
+                imgUrl={data?.data?.photo}
+              />
+            </>
+          ) : (
+            <>
+              {" "}
+              <VerticalNavbar
+                name={data?.data?.fname}
+                role={data?.data?.role}
+                menu={customerMenu}
+                imgUrl={data?.data?.photo}
+              />
+            </>
+          )}
+
           <Routes>
             <Route extact path="/" element={<MainPage />} />
             <Route extact path="/changepassword" element={<ChangePassword />} />
             <Route extact path="/updateprofile" element={<UpdateProfile />} />
-            <Route extact path="/category" element={<ItemCategory />} />
+            <Route extact path="/addcategory" element={<ItemCategory />} />
             <Route extact path="/alluserlist" element={<AllUserPage />} />
             <Route extact path="/userlist" element={<UserListPage />} />
             <Route extact path="/vendorlist" element={<VendorListPage />} />
+            <Route extact path="/category" element={<CategoryList/>} />
             <Route extact path="/addproduct" element={<AddProduct />} />
             <Route extact path="*" element={<ErrorPage />} />
           </Routes>

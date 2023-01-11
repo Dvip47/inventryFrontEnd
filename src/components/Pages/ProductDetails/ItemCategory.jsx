@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import CategoryLogic from "../../../Services/CategoryLogic";
 
 function ItemCategory() {
@@ -10,20 +11,20 @@ function ItemCategory() {
         <section className="page-container">
           <div className="page-content-wrapper">
             <div className="content sm-gutter mt-3 mb-4">
-              <div class="col-md-6 mt-4">
-                <div class="block form-block mb-4 mt-5">
-                  <div class="block-heading">
+              <div className="col-md-6 mt-4">
+                <div className="block form-block mb-4 mt-5">
+                  <div className="block-heading">
                     <h5>Add Category</h5>
                   </div>
 
-                  <form action="#" class="horizontal-form">
+                  <form action="#" className="horizontal-form">
                    
-                    <div class="form-group">
-                      <div class="form-row">
-                        <label class="col-md-3">Add Category</label>
-                        <div class="col-md-9">
+                    <div className="form-group">
+                      <div className="form-row">
+                        <label className="col-md-3">Add Category</label>
+                        <div className="col-md-9">
                           <input
-                            class="form-control"
+                            className="form-control"
                             name="category"
                             placeholder="New Category"
                             type="text"
@@ -35,13 +36,13 @@ function ItemCategory() {
                     <hr />
 
                     <button
-                      class="btn btn-primary mr-3"
+                      className="btn btn-primary mr-3"
                       type="submit"
                        onClick={addCategoryFunction}
                     >
                       Submit
                     </button>
-                    <button class="btn btn-outline-info">Cancel</button>
+                    <NavLink to="/category" className="btn border" >Cancel</NavLink>
                   </form>
                 </div>
               </div>

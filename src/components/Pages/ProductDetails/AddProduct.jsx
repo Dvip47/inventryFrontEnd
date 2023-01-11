@@ -1,5 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import CategoryLogic from "../../../Services/CategoryLogic";
 import ProductLogic from "../../../Services/ProductLogic";
 
 function AddProduct() {
@@ -8,6 +9,10 @@ function AddProduct() {
     // Do something with the files
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { category, getCategoryFunction } = CategoryLogic();
+  useEffect(() => {
+    getCategoryFunction();
+  });
   //   console.log(data);
   return (
     <center>
@@ -45,19 +50,15 @@ function AddProduct() {
                           onChange={inputHandler}
                         >
                           <option selected>Select Category</option>
-                          <option value="Electronics">Electronics</option>
-                          <option value="TVs & Appliances">
-                            TVs & Appliances
-                          </option>
-                          <option value="Men">Men</option>
-                          <option value="Women">Women</option>
-                          <option value="Baby & Kids">Baby & Kids</option>
-                          <option value="Home & Furniture">
-                            Home & Furniture
-                          </option>
-                          <option value="Sports, Books & More">
-                            Sports, Books & More
-                          </option>
+                          {category?.map((data, index) => {
+                            return (
+                              <>
+                                <option value={data?.category}>
+                                  {data?.category}
+                                </option>
+                              </>
+                            );
+                          })}
                           <option value="Other">Other</option>
                         </select>
                       </div>

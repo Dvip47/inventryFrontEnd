@@ -4,6 +4,7 @@ import { AuthLogic } from "../../Services/LoginLogic";
 
 function VerticalNavbar({ name, role, menu, imgUrl }) {
   const { logout } = AuthLogic();
+  // const [logout] = AuthLogic();
   const [show, setShow] = useState(false);
 
   return (
@@ -13,7 +14,6 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
           <NavLink to="/">
             <span className="logo ">YourLogo</span>
           </NavLink>
-          {/* <img src="logo.png" alt="logo" className="brand" height="50" /> */}
         </div>
 
         <div className="navigation-profile">

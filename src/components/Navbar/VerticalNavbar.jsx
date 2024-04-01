@@ -101,6 +101,7 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                                 onClick={() => {
                                   setShow(!show);
                                 }}
+                                title={data?.menu}
                               >
                                 <span className="icon-thumbnail">
                                   <i className="dripicons-article"></i>
@@ -112,8 +113,9 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                             <>
                               <NavLink
                                 to={data?.link}
+                                title={data?.menu}
                               >
-                                <span className="icon-thumbnail">
+                                <span className="icon-thumbnail" >
                                   <i className="dripicons-article"></i>
                                 </span>
                                 <span className="title">{data?.menu}</span>
@@ -129,6 +131,7 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                             onClick={() => {
                               setShow(!show);
                             }}
+                            title={data?.menu}
                           >
                             <span className="icon-thumbnail">
                               <i className="dripicons-article"></i>
@@ -147,7 +150,9 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                                 style={{ display: "block" }}
                               >
                                 <li>
-                                  <NavLink to="/userlist">
+                                  <NavLink to="/userlist"
+                                    title="Customer List"
+                                    >
                                     <span className="icon-thumbnail">
                                       <i className="dripicons-blog"></i>
                                     </span>
@@ -155,7 +160,9 @@ function VerticalNavbar({ name, role, menu, imgUrl }) {
                                   </NavLink>
                                 </li>
                                 <li>
-                                  <NavLink to="/vendorlist">
+                                  <NavLink to="/vendorlist"
+                                  title="Vendor List"
+                                  >
                                     <span className="icon-thumbnail">
                                       <i className="dripicons-blog"></i>
                                     </span>

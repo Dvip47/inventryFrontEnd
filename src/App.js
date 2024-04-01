@@ -5,7 +5,6 @@ import LoginPage from "./components/credentials/LoginPage";
 import Signup from "./components/credentials/RegisterPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCookies } from "react-cookie";
 import ErrorPage from "./components/Pages/ErrorPage";
 import ForgotPassword from "./components/credentials/ForgotPassword";
 import ChangePassword from "./components/credentials/ChangePassword";
@@ -36,9 +35,11 @@ function App() {
     }
   }, [pages, x]);
   const adminMenu = [
-    { menu: "User Management", link: "#" },
+    { menu: "User Management", link: "" },
     { menu: "Add Product", link: "/addproduct" },
     { menu: "Category", link: "/category" },
+    { menu: "Component Setting", link: "/component_setting" },
+    { menu: "Menu Setting", link: "/menu_setting" },
   ];
   // console.log(adminMenu)
   const vendorMenu = [
